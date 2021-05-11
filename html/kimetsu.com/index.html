@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>「鬼滅の刃」</title>
+    <link rel="icon" href="assets/logo.png" />
+    <style>
+      body {
+        margin: 0;
+      }
+
+      nav {
+        padding: 1em 0 0.5em 0;
+        background: url(./assets/bg_menu.png);
+        color: #f6ecc3;
+      }
+
+      #nav-expand-more {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        font-size: 0.85em;
+      }
+
+      #nav-expand-more li {
+        display: flex;
+        align-items: center;
+        margin-right: 1.5rem;
+      }
+
+      #nav-expand-more li img {
+        margin-right: 0.5rem;
+      }
+
+      #nav-main {
+        display: flex;
+        align-items: center;
+        border-bottom: solid 1px #f6ecc3;
+        padding-bottom: 1rem;
+      }
+
+      #logo {
+        width: 20%;
+        padding-left: 2.5rem;
+      }
+
+      #img-logo {
+        width: 122px;
+      }
+
+      #navbar {
+        display: flex;
+        list-style: none;
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+      }
+
+      #navbar li a {
+        position: relative;
+        padding: 0 2rem;
+        text-decoration: none;
+        color: #f6ecc3;
+        z-index: 1;
+      }
+
+      #navbar li a:hover {
+        color: #000;
+      }
+
+      #navbar li a:hover::before {
+        animation: mouseover;
+        animation-duration: 0.1s;
+        animation-fill-mode: forwards;
+        content: '';
+        height: 1rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      @keyframes mouseover {
+        from {
+          width: 1px;
+          background: initial;
+        }
+        to {
+          width: 100%;
+          background: #f6ecc3;
+        }
+      }
+
+      #navbar li:not(:last-child) a:after {
+        content: '';
+        width: 1px;
+        height: 1rem;
+        background: #838076;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul id="nav-expand-more">
+        <li>
+          <img src="./assets/icon_twitter.png" alt="Twitter" />
+          <span>公式ツイッター</span>
+        </li>
+        <li>
+          <img src="./assets/icon_sitemap.png" alt="Sitemap" />
+          <span>ページ一覧</span>
+        </li>
+      </ul>
+      <div id="nav-main">
+        <a id="logo" href="#">
+          <img src="./assets/logo.png" alt="Logo" id="img-logo" />
+        </a>
+        <ul id="navbar">
+          <li><a href="#"> ポータルトップ </a></li>
+          <li><a href="#"> 最新情報</a></li>
+          <li><a href="#"> 鬼滅の刃とは </a></li>
+          <li><a href="#"> 原作 </a></li>
+          <li><a href="#"> アニメ </a></li>
+          <li><a href="#"> イベント・その他 </a></li>
+          <li><a href="#"> ゲーム </a></li>
+        </ul>
+      </div>
+    </nav>
+    <header></header>
+    <main>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
