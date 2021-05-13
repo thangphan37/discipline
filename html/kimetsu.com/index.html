@@ -137,6 +137,34 @@
           width: 1px;
         }
       }
+
+      .slide-item {
+        position: relative;
+        border: solid 1px orange;
+        margin: 1.5rem;
+      }
+
+      .slide-item::before {
+        content: '';
+        width: 100%;
+        border-top: solid 1px orange;
+        border-bottom: solid 1px orange;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        height: calc(100% - 22px);
+      }
+
+      .slide-item::after {
+        content: '';
+        width: calc(100% - 22px);
+        border-left: solid 1px orange;
+        border-right: solid 1px orange;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        height: 100%;
+      }
     </style>
   </head>
   <body>
@@ -171,12 +199,54 @@
       </div>
     </nav>
     <header>
-      <div>
-        <img src="./assets/img_main-comics.jpeg" alt="Logo" id="img-comics" />
-        <img src="./assets/img_main-movie.jpeg" alt="Logo" id="img-movie" />
-        <img src="./assets/img_main-anime.jpeg" alt="Logo" id="img-anime" />
-        <img src="./assets/img_main-stage.jpeg" alt="Logo" id="img-stage" />
-        <img src="./assets/img_main-game.jpeg" alt="Logo" id="img-game" />
+      <div style="display: flex; overflow: scroll">
+        <div class="slide-item">
+          <img src="./assets/img_main-stage.jpeg" alt="Logo" id="img-stage" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-game.jpeg" alt="Logo" id="img-game" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-comics.jpeg" alt="Logo" id="img-comics" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-movie.jpeg" alt="Logo" id="img-movie" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-anime.jpeg" alt="Logo" id="img-anime" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-stage.jpeg" alt="Logo" id="img-stage" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-game.jpeg" alt="Logo" id="img-game" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-comics.jpeg" alt="Logo" id="img-comics" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-movie.jpeg" alt="Logo" id="img-movie" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-anime.jpeg" alt="Logo" id="img-anime" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-stage.jpeg" alt="Logo" id="img-stage" />
+        </div>
+
+        <div class="slide-item">
+          <img src="./assets/img_main-game.jpeg" alt="Logo" id="img-game" />
+        </div>
       </div>
       <div>*****</div>
     </header>
