@@ -138,6 +138,12 @@
         }
       }
 
+      #slides {
+        display: flex;
+        overflow: auto;
+        scroll-behavior: smooth;
+      }
+
       .slide-item {
         position: relative;
         border: solid 1px orange;
@@ -165,7 +171,25 @@
         left: 10px;
         height: 100%;
       }
+
+      #slide-btn-group {
+        display: flex;
+        justify-content: center;
+      }
+
+      .slide-btn {
+        width: 15px;
+        height: 15px;
+        transform: rotate(45deg);
+        margin: 0.5em;
+        border: none;
+      }
+
+      .slide-btn:hover {
+        cursor: pointer;
+      }
     </style>
+    <script src="./main.js" defer></script>
   </head>
   <body>
     <nav>
@@ -199,7 +223,7 @@
       </div>
     </nav>
     <header>
-      <div style="display: flex; overflow: scroll">
+      <div id="slides">
         <div class="slide-item">
           <img src="./assets/img_main-stage.jpeg" alt="Logo" id="img-stage" />
         </div>
@@ -248,7 +272,13 @@
           <img src="./assets/img_main-game.jpeg" alt="Logo" id="img-game" />
         </div>
       </div>
-      <div>*****</div>
+      <div id="slide-btn-group">
+        <button class="slide-btn" data-value="1"></button>
+        <button class="slide-btn" data-value="2"></button>
+        <button class="slide-btn" data-value="3"></button>
+        <button class="slide-btn" data-value="4"></button>
+        <button class="slide-btn" data-value="5"></button>
+      </div>
     </header>
     <main>
       <section></section>
