@@ -7,8 +7,15 @@
     <title>「鬼滅の刃」</title>
     <link rel="icon" href="assets/logo.png" />
     <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
+        background: #f6f3ec;
       }
 
       nav {
@@ -140,7 +147,7 @@
 
       #slides {
         display: flex;
-        overflow: auto;
+        overflow: hidden;
         scroll-behavior: smooth;
       }
 
@@ -163,17 +170,22 @@
         position: absolute;
         top: 10px;
         left: 0;
-        height: calc(100% - 22px);
+        height: calc(100% - 20px);
       }
 
       .slide-item::after {
         content: '';
-        width: calc(100% - 22px);
+        width: calc(100% - 20px);
         border-left: solid 1px orange;
         border-right: solid 1px orange;
         position: absolute;
         top: 0;
         left: 10px;
+        height: 100%;
+      }
+
+      .slide-item img {
+        width: 720px;
         height: 100%;
       }
 
@@ -216,7 +228,35 @@
         margin: 0 1.5em;
       }
 
-      .tab-contents {
+      #tab-titles li {
+        list-style: none;
+      }
+
+      #tab-titles li:hover {
+        list-style: disc;
+        cursor: pointer;
+        color: #da4a52;
+      }
+
+      .active-tab {
+        animation: activeTab;
+        animation-duration: 1.8s;
+        animation-fill-mode: forwards;
+        list-style: none;
+      }
+
+      @keyframes activeTab {
+        0% {
+          list-style: none;
+          color: #000;
+        }
+        100% {
+          list-style: disc;
+          color: #da4a52;
+        }
+      }
+
+      #tab-contents {
         display: flex;
         flex-wrap: wrap;
         max-width: 75vw;
@@ -224,8 +264,52 @@
       }
 
       .infor-item {
+        background: #fff;
         width: 388px;
+        height: 500px;
         margin: 1rem;
+        padding: 1rem;
+        box-shadow: 0 5px 8px 5px rgb(202, 199, 199);
+      }
+
+      .type-btn {
+        position: relative;
+        border: none;
+        background: #da4a52;
+        color: #fff;
+        margin: 1.5rem 0;
+        padding: 0.25rem 1.5rem;
+        font-size: 0.75em;
+      }
+
+      .type-btn::before {
+        content: '';
+        width: calc(100% - 6px);
+        border-left: solid 1px orange;
+        border-right: solid 1px orange;
+        position: absolute;
+        top: 0;
+        left: 3px;
+        height: 100%;
+      }
+
+      .type-btn::after {
+        content: '';
+        height: calc(100% - 6px);
+        border-top: solid 1px orange;
+        border-bottom: solid 1px orange;
+        position: absolute;
+        top: 3px;
+        left: 0;
+        width: 100%;
+      }
+
+      .item-date {
+        float: right;
+      }
+
+      .item-title {
+        font-weight: 800;
       }
     </style>
     <script src="./main.js" defer></script>
@@ -374,13 +458,13 @@
         </div>
         <div id="tab-container">
           <ul id="tab-titles">
-            <li>一覧</li>
-            <li>原作</li>
-            <li>アニメ</li>
-            <li>イベント</li>
-            <li>ゲーム</li>
+            <li data-tab="0" class="tab-title">一覧</li>
+            <li data-tab="1" class="tab-title">原作</li>
+            <li data-tab="2" class="tab-title">アニメ</li>
+            <li data-tab="3" class="tab-title">イベント</li>
+            <li data-tab="4" class="tab-title">ゲーム</li>
           </ul>
-          <div class="tab-contents">
+          <div id="tab-contents">
             <div class="infor-item">
               <img
                 src="./assets/img_main-game.jpeg"
@@ -388,11 +472,12 @@
                 id="img-game"
                 width="100%"
               />
-              <p>
+              <button class="type-btn">ゲーム</button>
+              <p class="item-title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p>2021.05.14</p>
+              <p class="item-date">2021.05.14</p>
             </div>
             <div class="infor-item">
               <img
@@ -401,11 +486,12 @@
                 id="img-game"
                 width="100%"
               />
-              <p>
+              <button class="type-btn">アニメ</button>
+              <p class="item-title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p>2021.05.14</p>
+              <p class="item-date">2021.05.14</p>
             </div>
             <div class="infor-item">
               <img
@@ -414,11 +500,12 @@
                 id="img-game"
                 width="100%"
               />
-              <p>
+              <button class="type-btn">アニメ</button>
+              <p class="item-title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p>2021.05.14</p>
+              <p class="item-date">2021.05.14</p>
             </div>
             <div class="infor-item">
               <img
@@ -427,11 +514,40 @@
                 id="img-game"
                 width="100%"
               />
-              <p>
+              <button class="type-btn">アニメ</button>
+              <p class="item-title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p>2021.05.14</p>
+              <p class="item-date">2021.05.14</p>
+            </div>
+            <div class="infor-item">
+              <img
+                src="./assets/img_main-game.jpeg"
+                alt="Main Game"
+                id="img-game"
+                width="100%"
+              />
+              <button class="type-btn">アニメ</button>
+              <p class="item-title">
+                『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
+                開催延期のお知らせ
+              </p>
+              <p class="item-date">2021.05.14</p>
+            </div>
+            <div class="infor-item">
+              <img
+                src="./assets/img_main-game.jpeg"
+                alt="Main Game"
+                id="img-game"
+                width="100%"
+              />
+              <button class="type-btn">アニメ</button>
+              <p class="item-title">
+                『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
+                開催延期のお知らせ
+              </p>
+              <p class="item-date">2021.05.14</p>
             </div>
           </div>
         </div>
