@@ -16,6 +16,7 @@
       body {
         margin: 0;
         background: #f6f3ec;
+        overflow-x: hidden;
       }
 
       nav {
@@ -147,8 +148,11 @@
 
       #slides {
         display: flex;
-        overflow: hidden;
-        scroll-behavior: smooth;
+        /* overflow: hidden;
+        scroll-behavior: smooth; */
+        width: 25000px;
+        transform: translate3d(-1142.5px, 0, 0);
+        transition: transform 0.5s;
       }
 
       .slide-item {
@@ -266,7 +270,7 @@
       .infor-item {
         background: #fff;
         width: 388px;
-        height: 500px;
+        height: 550px;
         margin: 1rem;
         padding: 1rem;
         box-shadow: 0 5px 8px 5px rgb(202, 199, 199);
@@ -304,8 +308,21 @@
         width: 100%;
       }
 
+      .img-container {
+        height: 340px;
+      }
+
+      .img-item {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+
       .item-date {
         float: right;
+        margin: 0;
       }
 
       .item-title {

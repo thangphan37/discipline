@@ -1,21 +1,17 @@
 const slideButtons = document.querySelectorAll('.slide-btn')
 const slides = document.querySelector('#slides')
-
 const tabContents = document.querySelector('#tab-contents')
 const tabs = document.querySelectorAll('.tab-title')
 
 const MARGIN_DISTANCE = 48
 const SLIDE_SIZE = 742
-const ASIDE_SIZE = (slides.offsetWidth - SLIDE_SIZE - MARGIN_DISTANCE * 2) / 2
-const INITIAL_SCROLL_LEFT = SLIDE_SIZE - ASIDE_SIZE + MARGIN_DISTANCE / 2
+const ASIDE_SIZE =
+  (document.body.offsetWidth - SLIDE_SIZE - MARGIN_DISTANCE * 2) / 2
+const INITIAL_X = SLIDE_SIZE - ASIDE_SIZE + MARGIN_DISTANCE / 2
 const SWIPE_SIZE = SLIDE_SIZE - ASIDE_SIZE - 250
-const FIRST_SCROLL_LEFT =
-  (SLIDE_SIZE + MARGIN_DISTANCE) * 1 + INITIAL_SCROLL_LEFT
-const LAST_SCROLL_LEFT =
-  (SLIDE_SIZE + MARGIN_DISTANCE) * 5 + INITIAL_SCROLL_LEFT
-const NEXT_LAST_SCROLL_LEFT =
-  (SLIDE_SIZE + MARGIN_DISTANCE) * 7 + INITIAL_SCROLL_LEFT
-const SCROLL_BAR_SIZE = 200
+const FIRST_X = (SLIDE_SIZE + MARGIN_DISTANCE) * 1 + INITIAL_X
+const LAST_X = (SLIDE_SIZE + MARGIN_DISTANCE) * 5 + INITIAL_X
+const NEXT_LAST_X = (SLIDE_SIZE + MARGIN_DISTANCE) * 7 + INITIAL_X
 
 const TAB_CONTENTS = [
   {
@@ -39,11 +35,11 @@ const TAB_CONTENTS = [
   },
 ]
 
-let currentIndex = 0
+let currentIndex = 1
 let start
 
 window.onload = () => {
-  slides.scrollLeft = FIRST_SCROLL_LEFT
+  slides.scrollLeft = FIRST_X
   slideButtons[0].style.background = 'orange'
 
   tabs[0].classList.add('active-tab')
@@ -54,17 +50,17 @@ tabs.forEach((tab) =>
     tabContents.innerHTML = Array(6)
       .fill(
         `<div class="infor-item">
-    <img
-      src="./assets/${TAB_CONTENTS[this.dataset.tab].img}"
-      alt="Main Game"
-      id="img-game"
-    />
-    <button class="type-btn">ゲーム</button>
-    <p class="item-title">
-      ${TAB_CONTENTS[this.dataset.tab].content}
-    </p>
-    <p class="item-date">2021.05.14</p>
-  </div>`,
+          <div class="img-container">
+            <div class="img-item" style="background-image: url('./assets/${
+              TAB_CONTENTS[this.dataset.tab].img
+            }')"></div>
+          </div>
+          <button class="type-btn">ゲーム</button>
+          <p class="item-title">
+            ${TAB_CONTENTS[this.dataset.tab].content}
+          </p>
+          <p class="item-date">2021.05.14</p>
+        </div>`,
       )
       .join('')
 
@@ -80,20 +76,22 @@ slideButtons.forEach((btn) => {
     slideButtons.forEach((btn) => (btn.style.background = '#000'))
     this.style.background = 'orange'
 
-    slides.scrollLeft =
-      (SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_SCROLL_LEFT
+    swipeSlide(-1 * ((SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X))
   })
 })
 
 slides.addEventListener('mousemove', function (e) {
-  // prevent scrolll to last slide faked
-  if (
-    e.x < start &&
-    slides.scrollLeft + (start - e.x) * SCROLL_BAR_SIZE <= NEXT_LAST_SCROLL_LEFT
-  ) {
-    slides.scrollLeft += (start - e.x) * SCROLL_BAR_SIZE
-  } else if (e.x > start) {
-    slides.scrollLeft -= (e.x - start) * SCROLL_BAR_SIZE
+  //initial case
+  if (!slides.style.transform) {
+    slides.style.transform = 'translate3d(-1142.5px, 0, 0)'
+  }
+
+  const currentX = composeX()
+
+  if (e.x < start && currentX * -1 + (start - e.x) <= NEXT_LAST_X) {
+    swipeSlide(currentX - (start - e.x))
+  } else if (e.x > start && currentX <= 0) {
+    swipeSlide(currentX + (e.x - start))
   }
 })
 
@@ -105,31 +103,41 @@ slides.addEventListener('mouseup', function (e) {
   start = undefined
 })
 
-slides.addEventListener('scroll', function (e) {})
+slides.addEventListener('mouseleave', function (e) {
+  start = undefined
+  swipeSlide(-1 * ((SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X))
+})
 
 slides.addEventListener('mouseup', function (e) {
-  const previousScrollLeft =
-    (SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_SCROLL_LEFT
+  const previousX = (SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X
+  const currentX = composeX() * -1
 
   // slide right
-  if (
-    slides.scrollLeft >= previousScrollLeft + SWIPE_SIZE ||
-    slides.scrollLeft >= LAST_SCROLL_LEFT
-  ) {
+  if (currentX >= previousX + SWIPE_SIZE || currentX >= LAST_X) {
     if (currentIndex === 5) currentIndex = 1
     else currentIndex++
   }
   // slide left
-  else if (
-    slides.scrollLeft <= previousScrollLeft - SWIPE_SIZE ||
-    slides.scrollLeft < FIRST_SCROLL_LEFT
-  ) {
+  else if (currentX <= previousX - SWIPE_SIZE || currentX < FIRST_X) {
     if (currentIndex === 1) currentIndex = 5
     else currentIndex--
   }
 
   slideButtons.forEach((btn) => (btn.style.background = '#000'))
   slideButtons[currentIndex - 1].style.background = 'orange'
-  slides.scrollLeft =
-    (SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_SCROLL_LEFT
+
+  swipeSlide(-1 * ((SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X))
 })
+
+function composeX() {
+  const {transform} = slides.style
+  const first = transform.search(/\(/g) + 1
+  const second = transform.search(/px/g)
+  const currentX = parseInt(slides.style.transform.slice(first, second))
+
+  return currentX
+}
+
+function swipeSlide(x) {
+  slides.style.transform = `translate3d(${x}px, 0, 0)`
+}
