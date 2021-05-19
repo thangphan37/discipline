@@ -3,15 +3,34 @@ const slides = document.querySelector('#slides')
 const tabContents = document.querySelector('#tab-contents')
 const tabs = document.querySelectorAll('.tab-title')
 
+const mediumSize = window.matchMedia(
+  '(min-width: 768px) and (max-width: 768px)',
+)
+const smallSize = window.matchMedia('(max-width: 767px)')
+
 const MARGIN_DISTANCE = 48
-const SLIDE_SIZE = 742
+
+let slideSize = 722
+
+if (smallSize.matches) {
+  slideSize = document.body.offsetWidth - MARGIN_DISTANCE
+}
+
 const ASIDE_SIZE =
-  (document.body.offsetWidth - SLIDE_SIZE - MARGIN_DISTANCE * 2) / 2
-const INITIAL_X = SLIDE_SIZE - ASIDE_SIZE + MARGIN_DISTANCE / 2
-const SWIPE_SIZE = SLIDE_SIZE - ASIDE_SIZE - 250
-const FIRST_X = (SLIDE_SIZE + MARGIN_DISTANCE) * 1 + INITIAL_X
-const LAST_X = (SLIDE_SIZE + MARGIN_DISTANCE) * 5 + INITIAL_X
-const NEXT_LAST_X = (SLIDE_SIZE + MARGIN_DISTANCE) * 7 + INITIAL_X
+  (document.body.offsetWidth - slideSize - MARGIN_DISTANCE * 2) / 2
+
+let initialX
+
+if (mediumSize.matches || smallSize.matches) {
+  initialX = slideSize + MARGIN_DISTANCE
+} else {
+  initialX = slideSize - ASIDE_SIZE + MARGIN_DISTANCE / 2
+}
+
+const SWIPE_SIZE = slideSize - ASIDE_SIZE - 250
+const FIRST_X = (slideSize + MARGIN_DISTANCE) * 1 + initialX
+const LAST_X = (slideSize + MARGIN_DISTANCE) * 5 + initialX
+const NEXT_LAST_X = (slideSize + MARGIN_DISTANCE) * 7 + initialX
 
 const TAB_CONTENTS = [
   {
@@ -39,7 +58,6 @@ let currentIndex = 1
 let start
 
 window.onload = () => {
-  slides.scrollLeft = FIRST_X
   slideButtons[0].style.background = 'orange'
 
   tabs[0].classList.add('active-tab')
@@ -76,23 +94,15 @@ slideButtons.forEach((btn) => {
     slideButtons.forEach((btn) => (btn.style.background = '#000'))
     this.style.background = 'orange'
 
-    swipeSlide(-1 * ((SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X))
+    swipeSlide(-1 * ((slideSize + MARGIN_DISTANCE) * currentIndex + initialX))
   })
 })
 
-slides.addEventListener('mousemove', function (e) {
-  //initial case
-  if (!slides.style.transform) {
-    slides.style.transform = 'translate3d(-1142.5px, 0, 0)'
-  }
+slides.addEventListener('mousemove', handleSwipeMove)
+slides.addEventListener('touchmove', handleSwipeMove)
 
-  const currentX = composeX()
-
-  if (e.x < start && currentX * -1 + (start - e.x) <= NEXT_LAST_X) {
-    swipeSlide(currentX - (start - e.x))
-  } else if (e.x > start && currentX <= 0) {
-    swipeSlide(currentX + (e.x - start))
-  }
+slides.addEventListener('touchstart', function (e) {
+  start = e.changedTouches[0].clientX
 })
 
 slides.addEventListener('mousedown', function (e) {
@@ -103,13 +113,29 @@ slides.addEventListener('mouseup', function (e) {
   start = undefined
 })
 
-slides.addEventListener('mouseleave', function (e) {
-  start = undefined
-  swipeSlide(-1 * ((SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X))
-})
+slides.addEventListener('mouseleave', handleSwipeCancel)
+slides.addEventListener('touchcancel', handleSwipeCancel)
 
-slides.addEventListener('mouseup', function (e) {
-  const previousX = (SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X
+slides.addEventListener('mouseup', handleSwipeEnd)
+slides.addEventListener('touchend', handleSwipeEnd)
+
+function handleSwipeMove(e) {
+  if (!slides.style.transform) {
+    slides.style.transform = `translate3d(-${FIRST_X}px, 0, 0)`
+  }
+
+  const currentX = composeX()
+  const nowX = e.changedTouches ? e.changedTouches[0].clientX : e.x
+
+  if (nowX < start && currentX * -1 + (start - nowX) <= NEXT_LAST_X) {
+    swipeSlide(currentX - (start - nowX))
+  } else if (nowX > start && currentX <= 0) {
+    swipeSlide(currentX + (nowX - start))
+  }
+}
+
+function handleSwipeEnd() {
+  const previousX = (slideSize + MARGIN_DISTANCE) * currentIndex + initialX
   const currentX = composeX() * -1
 
   // slide right
@@ -126,8 +152,13 @@ slides.addEventListener('mouseup', function (e) {
   slideButtons.forEach((btn) => (btn.style.background = '#000'))
   slideButtons[currentIndex - 1].style.background = 'orange'
 
-  swipeSlide(-1 * ((SLIDE_SIZE + MARGIN_DISTANCE) * currentIndex + INITIAL_X))
-})
+  swipeSlide(-1 * ((slideSize + MARGIN_DISTANCE) * currentIndex + initialX))
+}
+
+function handleSwipeCancel() {
+  start = undefined
+  swipeSlide(-1 * ((slideSize + MARGIN_DISTANCE) * currentIndex + initialX))
+}
 
 function composeX() {
   const {transform} = slides.style

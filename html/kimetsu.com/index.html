@@ -16,7 +16,6 @@
       body {
         margin: 0;
         background: #f6f3ec;
-        overflow-x: hidden;
       }
 
       nav {
@@ -31,7 +30,7 @@
         align-items: center;
         list-style: none;
         margin: 0;
-        font-size: 0.85em;
+        font-size: 0.75em;
       }
 
       #nav-expand-more li a {
@@ -146,13 +145,43 @@
         }
       }
 
+      header {
+        overflow: hidden;
+      }
+
       #slides {
         display: flex;
-        /* overflow: hidden;
-        scroll-behavior: smooth; */
         width: 25000px;
-        transform: translate3d(-1142.5px, 0, 0);
+        transform: translate3d(-1092.5px, 0, 0);
         transition: transform 0.5s;
+      }
+
+      .img-slide {
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .img-stage {
+        background-image: url('./assets/img_main-stage.jpeg');
+      }
+
+      .img-game {
+        background-image: url('./assets/img_main-game.jpeg');
+      }
+
+      .img-comics {
+        background-image: url('./assets/img_main-comics.jpeg');
+      }
+
+      .img-movie {
+        background-image: url('./assets/img_main-movie.jpeg');
+      }
+
+      .img-anime {
+        background-image: url('./assets/img_main-anime.jpeg');
       }
 
       .slide-item {
@@ -160,6 +189,10 @@
         border: solid 1px orange;
         margin: 1.5rem;
         user-select: none;
+        width: 720px;
+        height: 480px;
+        max-width: 740px;
+        max-height: 480px;
       }
 
       .slide-item:hover {
@@ -216,6 +249,15 @@
         align-items: center;
         flex-direction: column;
         margin-top: 2.5rem;
+      }
+
+      #img-news {
+        width: 100%;
+        height: 130px;
+        background-image: url('./assets/title_news.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
       }
 
       #tab-container {
@@ -328,6 +370,64 @@
       .item-title {
         font-weight: 800;
       }
+
+      /* small device*/
+      @media (max-width: 767px) {
+        #nav-expand-more,
+        #nav-main {
+          display: none;
+        }
+
+        .slide-item {
+          width: 360px;
+          height: 300px;
+        }
+      }
+
+      /* iPad */
+      @media (max-width: 768px) {
+        #navbar {
+          font-size: 0.75rem;
+        }
+
+        #navbar li a {
+          padding: 0 0.5rem;
+        }
+
+        #navbar li:not(:last-child) a:after {
+          height: 0.75rem;
+        }
+
+        #slides {
+          transform: translate3d(-1540px, 0, 0);
+        }
+      }
+
+      /* iPad Pro */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        #logo {
+          width: 12%;
+        }
+
+        #navbar {
+          font-size: 1rem;
+        }
+
+        #navbar li {
+          padding: 0;
+        }
+
+        #navbar li a {
+          padding: 0 1rem;
+        }
+
+        #navbar li:not(:last-child) a:after {
+          height: 1rem;
+        }
+        #slides {
+          transform: translate3d(-1413px, 0px, 0px);
+        }
+      }
     </style>
     <script src="./main.js" defer></script>
   </head>
@@ -365,99 +465,51 @@
     <header>
       <div id="slides">
         <div class="slide-item">
-          <img
-            src="./assets/img_main-stage.jpeg"
-            alt="Main Stage"
-            id="img-stage"
-          />
+          <div class="img-slide img-stage"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-game.jpeg"
-            alt="Main Game"
-            id="img-game"
-          />
+          <div class="img-slide img-game"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-comics.jpeg"
-            alt="Main Comics"
-            id="img-comics"
-          />
+          <div class="img-slide img-comics"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-movie.jpeg"
-            alt="Main Movie"
-            id="img-movie"
-          />
+          <div class="img-slide img-movie"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-anime.jpeg"
-            alt="Main Anime"
-            id="img-anime"
-          />
+          <div class="img-slide img-anime"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-stage.jpeg"
-            alt="Main Stage"
-            id="img-stage"
-          />
+          <div class="img-slide img-stage"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-game.jpeg"
-            alt="Main Game"
-            id="img-game"
-          />
+          <div class="img-slide img-game"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-comics.jpeg"
-            alt="Main Comics"
-            id="img-comics"
-          />
+          <div class="img-slide img-comics"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-movie.jpeg"
-            alt="Main Movie"
-            id="img-movie"
-          />
+          <div class="img-slide img-movie"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-anime.jpeg"
-            alt="Main Anime"
-            id="img-anime"
-          />
+          <div class="img-slide img-anime"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-stage.jpeg"
-            alt="Main Stage"
-            id="img-stage"
-          />
+          <div class="img-slide img-stage"></div>
         </div>
 
         <div class="slide-item">
-          <img
-            src="./assets/img_main-game.jpeg"
-            alt="Main Game"
-            id="img-game"
-          />
+          <div class="img-slide img-game"></div>
         </div>
       </div>
       <div id="slide-btn-group">
@@ -470,9 +522,7 @@
     </header>
     <main>
       <section id="news-information">
-        <div>
-          <img src="./assets/title_news.png" alt="Title News" id="img-news" />
-        </div>
+        <div id="img-news"></div>
         <div id="tab-container">
           <ul id="tab-titles">
             <li data-tab="0" class="tab-title">一覧</li>
