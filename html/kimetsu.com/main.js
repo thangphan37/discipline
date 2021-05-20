@@ -1,6 +1,9 @@
 const slideButtons = document.querySelectorAll('.slide-btn')
 const slides = document.querySelector('#slides')
 const tabContents = document.querySelector('#tab-contents')
+const mobileMenu = document.querySelector('.mobile-menu')
+const menuModal = document.querySelector('.menu-modal')
+const menuClose = document.querySelector('.menu-close')
 const tabs = document.querySelectorAll('.tab-title')
 
 const mediumSize = window.matchMedia(
@@ -10,7 +13,7 @@ const smallSize = window.matchMedia('(max-width: 767px)')
 
 const MARGIN_DISTANCE = 48
 
-let slideSize = 722
+let slideSize = 720
 
 if (smallSize.matches) {
   slideSize = document.body.offsetWidth - MARGIN_DISTANCE
@@ -118,6 +121,14 @@ slides.addEventListener('touchcancel', handleSwipeCancel)
 
 slides.addEventListener('mouseup', handleSwipeEnd)
 slides.addEventListener('touchend', handleSwipeEnd)
+
+mobileMenu.addEventListener('click', function handleOpenMenu() {
+  menuModal.style.display = 'block'
+})
+
+menuClose.addEventListener('click', function handleCloseMenu() {
+  menuModal.style.display = 'none'
+})
 
 function handleSwipeMove(e) {
   if (!slides.style.transform) {
