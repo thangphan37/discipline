@@ -7,6 +7,16 @@
     <title>「鬼滅の刃」</title>
     <link rel="icon" href="assets/logo.png" />
     <style>
+      :root {
+        --text-color: #f6ecc3;
+        --background-color: #f6f3ec;
+        --nav-color: #baaf56;
+        --orange-color: orange;
+        --active-tab-color: #da4a52;
+        --black-color: #000;
+        --white-color: #fff;
+      }
+
       *,
       *::after,
       *::before {
@@ -15,13 +25,13 @@
 
       body {
         margin: 0;
-        background: #f6f3ec;
+        background: var(--background-color);
       }
 
       nav {
         padding: 1em 0 0.5em 0;
         background: url(./assets/bg_menu.png);
-        color: #f6ecc3;
+        color: var(--text-color);
       }
 
       nav .mobile-logo,
@@ -33,7 +43,7 @@
         display: none;
       }
 
-      #nav-expand-more {
+      #nav-more {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -42,22 +52,22 @@
         font-size: 0.75em;
       }
 
-      #nav-expand-more li a {
+      #nav-more li a {
         display: flex;
         align-items: center;
         margin-right: 1.5rem;
         text-decoration: none;
-        color: #f6ecc3;
+        color: var(--text-color);
       }
 
-      #nav-expand-more li img {
+      #nav-more li img {
         margin-right: 0.5rem;
       }
 
       #nav-main {
         display: flex;
         align-items: center;
-        border-bottom: solid 1px #f6ecc3;
+        border-bottom: solid 1px var(--text-color);
         padding-bottom: 1rem;
       }
 
@@ -70,34 +80,34 @@
         width: 122px;
       }
 
-      #navbar {
+      #nav-items {
         display: flex;
         list-style: none;
         font-size: 1rem;
         letter-spacing: 1.5px;
       }
 
-      #navbar li {
+      #nav-items li {
         padding: 1.5rem 0;
       }
 
-      #navbar li a {
+      #nav-items li a {
         position: relative;
         padding: 0 2rem;
         text-decoration: none;
-        color: #f6ecc3;
+        color: var(--text-color);
         z-index: 1;
       }
 
-      #navbar li:hover {
+      #nav-items li:hover {
         cursor: pointer;
       }
 
-      #navbar li:hover a {
-        color: #000;
+      #nav-items li:hover a {
+        color: var(--black-color);
       }
 
-      #navbar li:hover a::before {
+      #nav-items li:hover a::before {
         animation: expand;
         animation-duration: 0.4s;
         animation-fill-mode: forwards;
@@ -109,7 +119,7 @@
         z-index: -1;
       }
 
-      #navbar li:not(:hover) a::before {
+      #nav-items li:not(:hover) a::before {
         visibility: hidden;
         transition: visibility 0.4s;
         animation: shrink;
@@ -118,13 +128,13 @@
         content: '';
         height: 1.5rem;
         position: absolute;
-        background: #baaf56;
+        background: var(--nav-color);
         top: -3px;
         left: 0;
         z-index: -1;
       }
 
-      #navbar li:not(:last-child) a:after {
+      #nav-items li:not(:last-child) a:after {
         content: '';
         width: 1px;
         height: 1rem;
@@ -141,7 +151,7 @@
         }
         100% {
           width: 100%;
-          background: #baaf56;
+          background: var(--nav-color);
         }
       }
 
@@ -195,7 +205,7 @@
 
       .slide-item {
         position: relative;
-        border: solid 1px orange;
+        border: solid 1px var(--orange-color);
         margin: 1.5rem;
         user-select: none;
         width: 720px;
@@ -211,8 +221,8 @@
       .slide-item::before {
         content: '';
         width: 100%;
-        border-top: solid 1px orange;
-        border-bottom: solid 1px orange;
+        border-top: solid 1px var(--orange-color);
+        border-bottom: solid 1px var(--orange-color);
         position: absolute;
         top: 10px;
         left: 0;
@@ -222,8 +232,8 @@
       .slide-item::after {
         content: '';
         width: calc(100% - 20px);
-        border-left: solid 1px orange;
-        border-right: solid 1px orange;
+        border-left: solid 1px var(--orange-color);
+        border-right: solid 1px var(--orange-color);
         position: absolute;
         top: 0;
         left: 10px;
@@ -246,7 +256,7 @@
         transform: rotate(45deg);
         margin: 0.5em;
         border: none;
-        background: #000;
+        background: var(--black-color);
       }
 
       .slide-btn:hover {
@@ -269,28 +279,28 @@
         background-size: contain;
       }
 
-      #tab-container {
+      #news-container {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
 
-      #tab-titles {
+      #news-titles {
         display: flex;
       }
 
-      #tab-titles li {
+      #news-titles li {
         margin: 0 1.5em;
       }
 
-      #tab-titles li {
+      #news-titles li {
         list-style: none;
       }
 
-      #tab-titles li:hover {
+      #news-titles li:hover {
         list-style: disc;
         cursor: pointer;
-        color: #da4a52;
+        color: var(--active-tab-color);
       }
 
       .active-tab {
@@ -303,23 +313,23 @@
       @keyframes activeTab {
         0% {
           list-style: none;
-          color: #000;
+          color: var(--black-color);
         }
         100% {
           list-style: disc;
-          color: #da4a52;
+          color: var(--active-tab-color);
         }
       }
 
-      #tab-contents {
+      #news-contents {
         display: flex;
         flex-wrap: wrap;
         max-width: 75vw;
         margin: 0 auto;
       }
 
-      .infor-item {
-        background: #fff;
+      .news-item {
+        background: var(--white-color);
         width: 388px;
         height: 550px;
         margin: 1rem;
@@ -330,8 +340,8 @@
       .type-btn {
         position: relative;
         border: none;
-        background: #da4a52;
-        color: #fff;
+        background: var(--active-tab-color);
+        color: var(--white-color);
         margin: 1.5rem 0;
         padding: 0.25rem 1.5rem;
         font-size: 0.75em;
@@ -340,8 +350,8 @@
       .type-btn::before {
         content: '';
         width: calc(100% - 6px);
-        border-left: solid 1px orange;
-        border-right: solid 1px orange;
+        border-left: solid 1px var(--orange-color);
+        border-right: solid 1px var(--orange-color);
         position: absolute;
         top: 0;
         left: 3px;
@@ -351,8 +361,8 @@
       .type-btn::after {
         content: '';
         height: calc(100% - 6px);
-        border-top: solid 1px orange;
-        border-bottom: solid 1px orange;
+        border-top: solid 1px var(--orange-color);
+        border-bottom: solid 1px var(--orange-color);
         position: absolute;
         top: 3px;
         left: 0;
@@ -371,23 +381,23 @@
         background-size: contain;
       }
 
-      .item-date {
+      .date {
         float: right;
         margin: 0;
       }
 
-      .item-title {
+      .title {
         font-weight: 800;
       }
 
       /* small device*/
       @media (max-width: 767px) {
-        #nav-expand-more,
+        #nav-more,
         #nav-main {
           display: none;
         }
 
-        #tab-titles li {
+        #news-titles li {
           margin: 0 0.5em;
           font-size: 0.85em;
         }
@@ -431,33 +441,25 @@
         .icon p {
           width: 40px;
           height: 2px;
-          background: #baaf56;
+          background: var(--nav-color);
           margin: 0.5em 0;
         }
 
         .menu-modal {
-          animation-duration: 0.9s;
-          animation: openModal;
-          overflow: scroll;
           position: fixed;
+          display: block;
+          overflow: scroll;
+          transition: all 400ms;
+          top: -100vh;
+          height: 100vh;
           z-index: 9999;
-          top: 0;
           right: 0;
           left: 0;
           bottom: 0;
           background: url(./assets/bg_menu.png);
-          color: #f6ecc3;
-          border: solid 2px orange;
+          color: var(--text-color);
+          border: solid 2px var(--orange-color);
           padding: 0.5rem 0;
-        }
-
-        @keyframes openModal {
-          0% {
-            display: none;
-          }
-          100% {
-            display: block;
-          }
         }
 
         .menu-close {
@@ -469,7 +471,7 @@
         .symbol {
           width: 40px;
           height: 2px;
-          background: #f6ecc3;
+          background: var(--text-color);
           margin: 0;
         }
 
@@ -487,18 +489,18 @@
           font-size: 0.85em;
         }
 
-        .menu-modal .menu-list {
+        .menu-modal .menus {
           padding: 0;
           margin: 0 1rem;
         }
 
-        .menu-modal .menu-list .menu-item {
+        .menu-modal .menus .menu {
           list-style: none;
           border-bottom: solid 1px #ada890;
           padding: 1.5rem 0;
         }
 
-        .sub-menu-list {
+        .sub-menus {
           margin: 0;
           padding: 0;
           display: flex;
@@ -506,7 +508,7 @@
           list-style: none;
         }
 
-        .sub-menu-list li {
+        .sub-menus li {
           color: #000;
           background: #b5ab53;
           padding: 0.25rem 0 0.25rem 0.5rem;
@@ -514,7 +516,7 @@
           width: 50%;
         }
 
-        .sub-menu-list li:nth-of-type(2n + 1) {
+        .sub-menus li:nth-of-type(2n + 1) {
           margin-right: 0.25rem;
           width: calc(50% - 0.25rem);
         }
@@ -522,15 +524,15 @@
 
       /* iPad */
       @media (min-width: 768px) and (max-width: 769px) {
-        #navbar {
+        #nav-items {
           font-size: 0.75rem;
         }
 
-        #navbar li a {
+        #nav-items li a {
           padding: 0 0.5rem;
         }
 
-        #navbar li:not(:last-child) a:after {
+        #nav-items li:not(:last-child) a:after {
           height: 0.75rem;
         }
 
@@ -538,35 +540,35 @@
           transform: translate3d(-200vw, 0, 0);
         }
 
-        #tab-contents {
+        #news-contents {
           max-width: 100vw;
         }
 
-        .infor-item {
+        .news-item {
           width: calc((100vw - 64px) / 2);
           height: 550px;
         }
       }
 
-      /* iPad Pro */
-      @media (min-width: 770px) and (max-width: 1024px) {
+      /* large size */
+      @media (min-width: 770px) and (max-width: 1664px) {
         #logo {
           width: 12%;
         }
 
-        #navbar {
+        #nav-items {
           font-size: 1rem;
         }
 
-        #navbar li {
+        #nav-items li {
           padding: 0;
         }
 
-        #navbar li a {
+        #nav-items li a {
           padding: 0 1rem;
         }
 
-        #navbar li:not(:last-child) a:after {
+        #nav-items li:not(:last-child) a:after {
           height: 1rem;
         }
 
@@ -574,11 +576,11 @@
           transform: translate3d(-1408px, 0px, 0px);
         }
 
-        #tab-contents {
+        #news-contents {
           max-width: 100vw;
         }
 
-        .infor-item {
+        .news-item {
           width: calc((100vw - 64px) / 2);
           height: 550px;
         }
@@ -588,7 +590,7 @@
   </head>
   <body>
     <nav>
-      <ul id="nav-expand-more">
+      <ul id="nav-more">
         <li>
           <a href="#">
             <img src="./assets/icon_twitter.png" alt="Twitter" />
@@ -606,7 +608,7 @@
         <a id="logo" href="#">
           <img src="./assets/logo.png" alt="Logo" id="img-logo" />
         </a>
-        <ul id="navbar">
+        <ul id="nav-items">
           <li><a href="#"> ポータルトップ </a></li>
           <li><a href="#"> 最新情報</a></li>
           <li><a href="#"> 鬼滅の刃とは </a></li>
@@ -636,30 +638,30 @@
         </div>
         <p class="close-text">とじる</p>
       </div>
-      <ul class="menu-list">
-        <li class="menu-item">ポータルトップ</li>
-        <li class="menu-item">最新情報</li>
-        <li class="menu-item">鬼滅の刃とは</li>
-        <li class="menu-item">原作</li>
-        <li class="menu-item">
+      <ul class="menus">
+        <li class="menu">ポータルトップ</li>
+        <li class="menu">最新情報</li>
+        <li class="menu">鬼滅の刃とは</li>
+        <li class="menu">原作</li>
+        <li class="menu">
           <span>アニメ</span>
-          <ul class="sub-menu-list">
+          <ul class="sub-menus">
             <li>竈門炭治郎 立志編</li>
             <li>劇場版 無限列車編</li>
             <li>遊郭編</li>
           </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu">
           <span>イベントーその他</span>
-          <ul class="sub-menu-list">
+          <ul class="sub-menus">
             <li>竈門炭治郎 立志編</li>
             <li>劇場版 無限列車編</li>
             <li>遊郭編</li>
           </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu">
           <span>ゲーム</span>
-          <ul class="sub-menu-list">
+          <ul class="sub-menus">
             <li>竈門炭治郎 立志編</li>
             <li>劇場版 無限列車編</li>
           </ul>
@@ -727,16 +729,16 @@
     <main>
       <section id="news-information">
         <div id="img-news"></div>
-        <div id="tab-container">
-          <ul id="tab-titles">
-            <li data-tab="0" class="tab-title">一覧</li>
-            <li data-tab="1" class="tab-title">原作</li>
-            <li data-tab="2" class="tab-title">アニメ</li>
-            <li data-tab="3" class="tab-title">イベント</li>
-            <li data-tab="4" class="tab-title">ゲーム</li>
+        <div id="news-container">
+          <ul id="news-titles">
+            <li data-tab="0" class="news-title">一覧</li>
+            <li data-tab="1" class="news-title">原作</li>
+            <li data-tab="2" class="news-title">アニメ</li>
+            <li data-tab="3" class="news-title">イベント</li>
+            <li data-tab="4" class="news-title">ゲーム</li>
           </ul>
-          <div id="tab-contents">
-            <div class="infor-item">
+          <div id="news-contents">
+            <div class="news-item">
               <img
                 src="./assets/img_main-game.jpeg"
                 alt="Main Game"
@@ -744,13 +746,13 @@
                 width="100%"
               />
               <button class="type-btn">ゲーム</button>
-              <p class="item-title">
+              <p class="title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p class="item-date">2021.05.14</p>
+              <p class="date">2021.05.14</p>
             </div>
-            <div class="infor-item">
+            <div class="news-item">
               <img
                 src="./assets/img_main-game.jpeg"
                 alt="Main Game"
@@ -758,13 +760,13 @@
                 width="100%"
               />
               <button class="type-btn">アニメ</button>
-              <p class="item-title">
+              <p class="title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p class="item-date">2021.05.14</p>
+              <p class="date">2021.05.14</p>
             </div>
-            <div class="infor-item">
+            <div class="news-item">
               <img
                 src="./assets/img_main-game.jpeg"
                 alt="Main Game"
@@ -772,13 +774,13 @@
                 width="100%"
               />
               <button class="type-btn">アニメ</button>
-              <p class="item-title">
+              <p class="title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p class="item-date">2021.05.14</p>
+              <p class="date">2021.05.14</p>
             </div>
-            <div class="infor-item">
+            <div class="news-item">
               <img
                 src="./assets/img_main-game.jpeg"
                 alt="Main Game"
@@ -786,13 +788,13 @@
                 width="100%"
               />
               <button class="type-btn">アニメ</button>
-              <p class="item-title">
+              <p class="title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p class="item-date">2021.05.14</p>
+              <p class="date">2021.05.14</p>
             </div>
-            <div class="infor-item">
+            <div class="news-item">
               <img
                 src="./assets/img_main-game.jpeg"
                 alt="Main Game"
@@ -800,13 +802,13 @@
                 width="100%"
               />
               <button class="type-btn">アニメ</button>
-              <p class="item-title">
+              <p class="title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p class="item-date">2021.05.14</p>
+              <p class="date">2021.05.14</p>
             </div>
-            <div class="infor-item">
+            <div class="news-item">
               <img
                 src="./assets/img_main-game.jpeg"
                 alt="Main Game"
@@ -814,11 +816,11 @@
                 width="100%"
               />
               <button class="type-btn">アニメ</button>
-              <p class="item-title">
+              <p class="title">
                 『劇場版「鬼滅の刃」無限列車編』完全生産限定版・早期特典予約キャンペーン舞台挨拶付上映会
                 開催延期のお知らせ
               </p>
-              <p class="item-date">2021.05.14</p>
+              <p class="date">2021.05.14</p>
             </div>
           </div>
         </div>

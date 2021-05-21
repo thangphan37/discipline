@@ -10,10 +10,10 @@ const mediumSize = window.matchMedia(
   '(min-width: 768px) and (max-width: 768px)',
 )
 const smallSize = window.matchMedia('(max-width: 767px)')
-
 const MARGIN_DISTANCE = 48
 
 let slideSize = 720
+let initialX
 
 if (smallSize.matches) {
   slideSize = document.body.offsetWidth - MARGIN_DISTANCE
@@ -21,8 +21,6 @@ if (smallSize.matches) {
 
 const ASIDE_SIZE =
   (document.body.offsetWidth - slideSize - MARGIN_DISTANCE * 2) / 2
-
-let initialX
 
 if (mediumSize.matches || smallSize.matches) {
   initialX = slideSize + MARGIN_DISTANCE
@@ -123,11 +121,11 @@ slides.addEventListener('mouseup', handleSwipeEnd)
 slides.addEventListener('touchend', handleSwipeEnd)
 
 mobileMenu.addEventListener('click', function handleOpenMenu() {
-  menuModal.style.display = 'block'
+  menuModal.style.top = '0'
 })
 
 menuClose.addEventListener('click', function handleCloseMenu() {
-  menuModal.style.display = 'none'
+  menuModal.style.top = '-100vh'
 })
 
 function handleSwipeMove(e) {
