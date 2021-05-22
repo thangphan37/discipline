@@ -1,11 +1,10 @@
 const slideButtons = document.querySelectorAll('.slide-btn')
 const slides = document.querySelector('#slides')
-const tabContents = document.querySelector('#tab-contents')
+const newContents = document.querySelector('#news-contents')
 const mobileMenu = document.querySelector('.mobile-menu')
 const menuModal = document.querySelector('.menu-modal')
 const menuClose = document.querySelector('.menu-close')
-const tabs = document.querySelectorAll('.tab-title')
-
+const newsTitles = document.querySelectorAll('.news-title')
 const mediumSize = window.matchMedia(
   '(min-width: 768px) and (max-width: 768px)',
 )
@@ -32,7 +31,6 @@ const SWIPE_SIZE = slideSize - ASIDE_SIZE - 250
 const FIRST_X = (slideSize + MARGIN_DISTANCE) * 1 + initialX
 const LAST_X = (slideSize + MARGIN_DISTANCE) * 5 + initialX
 const NEXT_LAST_X = (slideSize + MARGIN_DISTANCE) * 7 + initialX
-
 const TAB_CONTENTS = [
   {
     content:
@@ -61,29 +59,29 @@ let start
 window.onload = () => {
   slideButtons[0].style.background = 'orange'
 
-  tabs[0].classList.add('active-tab')
+  newsTitles[0].classList.add('active-tab')
 }
 
-tabs.forEach((tab) =>
+newsTitles.forEach((tab) =>
   tab.addEventListener('click', function (e) {
-    tabContents.innerHTML = Array(6)
+    newContents.innerHTML = Array(6)
       .fill(
-        `<div class="infor-item">
+        `<div class="news-item">
           <div class="img-container">
             <div class="img-item" style="background-image: url('./assets/${
               TAB_CONTENTS[this.dataset.tab].img
             }')"></div>
           </div>
           <button class="type-btn">ゲーム</button>
-          <p class="item-title">
+          <p class="title">
             ${TAB_CONTENTS[this.dataset.tab].content}
           </p>
-          <p class="item-date">2021.05.14</p>
+          <p class="date">2021.05.14</p>
         </div>`,
       )
       .join('')
 
-    tabs.forEach((tab) => tab.classList.remove('active-tab'))
+    newsTitles.forEach((tab) => tab.classList.remove('active-tab'))
     this.classList.add('active-tab')
   }),
 )

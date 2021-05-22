@@ -294,30 +294,52 @@
       }
 
       #news-titles li {
+        position: relative;
         list-style: none;
       }
 
       #news-titles li:hover {
-        list-style: disc;
         cursor: pointer;
         color: var(--active-tab-color);
       }
 
+      #news-titles li:hover::before,
+      .active-tab::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        left: -1rem;
+        top: 9px;
+        border-radius: 50%;
+        background: var(--active-tab-color);
+        animation: showMarker;
+        animation-duration: 1.8s;
+        animation-fill-mode: forwards;
+      }
+
       .active-tab {
-        animation: activeTab;
+        animation: effectColor;
         animation-duration: 1.8s;
         animation-fill-mode: forwards;
         list-style: none;
       }
 
-      @keyframes activeTab {
+      @keyframes effectColor {
         0% {
-          list-style: none;
           color: var(--black-color);
         }
         100% {
-          list-style: disc;
           color: var(--active-tab-color);
+        }
+      }
+
+      @keyframes showMarker {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
         }
       }
 
@@ -519,6 +541,15 @@
         .sub-menus li:nth-of-type(2n + 1) {
           margin-right: 0.25rem;
           width: calc(50% - 0.25rem);
+        }
+
+        .news-title {
+          list-style: none;
+        }
+
+        .active-tab::before {
+          left: 50% !important;
+          top: -10px !important;
         }
       }
 
