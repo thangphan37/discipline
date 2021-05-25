@@ -11,12 +11,13 @@
       }
 
       #get_started {
-        height: calc(100vh - 200px);
+        height: calc(100vh - 250px);
         background: url('./assets/get_started_background.jpeg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        box-shadow: inset 0 0 120px 80px black;
+        box-shadow: inset 0 0 120px 380px rgb(0 0 0 / 78%);
+        border-bottom: solid 10px #222222;
       }
 
       #netflix_logo {
@@ -45,6 +46,7 @@
       #language {
         height: 1.9375rem;
         border: solid 1px white;
+        border-radius: 3px;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         background: transparent;
@@ -109,6 +111,65 @@
         padding: 0 1.5rem;
         margin-left: 2px;
       }
+
+      .feature {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        background: #000;
+        color: #fff;
+        border-bottom: solid 10px #222222;
+      }
+
+      .content {
+        width: 500px;
+      }
+
+      .content h2 {
+        font-size: 3rem;
+      }
+
+      .content p {
+        font-size: 1.5rem;
+      }
+
+      .media {
+        position: relative;
+        width: 500px;
+        height: 80%;
+      }
+
+      .media_img {
+        height: 80%;
+      }
+
+      .tv_img {
+        position: absolute;
+        top: 0;
+        height: 420px;
+        z-index: 2;
+      }
+
+      /* 420x560 - 640x480*/
+      .media_video {
+        position: absolute;
+
+        z-index: 1;
+      }
+
+      #tv_video {
+        left: 71.75px;
+        top: 87.5px;
+        height: 236.25px;
+      }
+
+      #devices_video {
+        left: 89.25px;
+        top: 45.5px;
+        height: 192.5px;
+        width: 374.5px;
+      }
     </style>
   </head>
   <body>
@@ -159,7 +220,65 @@
           </form>
         </div>
       </section>
-      <section id="features"></section>
+      <section id="features">
+        <div class="feature">
+          <div class="content">
+            <h2>Enjoy on your TV.</h2>
+            <p>
+              Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV,
+              Blu-ray players, and more.
+            </p>
+          </div>
+          <div class="media">
+            <img src="./assets/tv.png" class="media_img tv_img" />
+            <div>
+              <video id="tv_video" class="media_video" autoplay muted loop>
+                <source src="./assets/video-tv-jp.m4v" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="./assets/mobile-0819.jpeg" class="media_img" />
+
+          <div class="content">
+            <h2>Download your shows to watch offline.</h2>
+            <p>
+              Save your favorites easily and always have something to watch.
+            </p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="content">
+            <h2>Watch everywhere.</h2>
+            <p>
+              Stream unlimited movies and TV shows on your phone, tablet,
+              laptop, and TV without paying more.
+            </p>
+          </div>
+          <div class="media">
+            <img src="./assets/device-pile-jp.png" class="media_img tv_img" />
+            <div>
+              <video id="devices_video" class="media_video" autoplay muted loop>
+                <source src="./assets/video-devices-jp.m4v" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="./assets/kids.png" class="media_img" />
+
+          <div class="content">
+            <h2>Create profiles for kids.</h2>
+            <p>
+              Send kids on adventures with their favorite characters in a space
+              made just for them—free with your membership.
+            </p>
+          </div>
+        </div>
+      </section>
       <section id="questions"></section>
       <section id="footer"></section>
     </main>
