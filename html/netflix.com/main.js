@@ -1,13 +1,12 @@
 const questions = document.querySelectorAll('.question')
 const hiddenStyles = `
-  height: 0;
-  overflow: hidden;
-  padding: 0 2.5rem;
+  max-height: 0;
   animation: shrink;
   animation-duration: 0.25s;
   animation-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
 `
 const rotateX = (x) => `rotate(${x}deg)`
+const maxHeight = '1000px'
 
 questions.forEach((question) =>
   question.addEventListener('click', function toggleQuestion(e) {
@@ -23,8 +22,7 @@ questions.forEach((question) =>
       second.style.transform = rotateX(0)
     } else {
       const visibleStyles = `
-        height: auto;
-        padding: 3rem 2.5rem;
+        max-height: 1000px;
         animation: expand;
         animation-duration: 0.25s;
         animation-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
@@ -42,13 +40,20 @@ questions.forEach((question) =>
 )
 
 function shrinkAllQuestions() {
-  questions.forEach((question) => {
-    const symbols = question.lastElementChild.querySelectorAll('.toggle_symbol')
-    const first = symbols[0]
-    const second = symbols[1]
+  for (let i = 0; i < questions.length; i++) {
+    const question = questions[i]
 
-    question.nextElementSibling.style = hiddenStyles
-    first.style.transform = rotateX(90)
-    second.style.transform = rotateX(0)
-  })
+    if (question.nextElementSibling.style.maxHeight === maxHeight) {
+      const symbols =
+        question.lastElementChild.querySelectorAll('.toggle_symbol')
+      const first = symbols[0]
+      const second = symbols[1]
+
+      question.nextElementSibling.style = hiddenStyles
+      first.style.transform = rotateX(90)
+      second.style.transform = rotateX(0)
+
+      break
+    }
+  }
 }
