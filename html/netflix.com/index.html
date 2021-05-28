@@ -11,7 +11,7 @@
       }
 
       #get_started {
-        height: calc(100vh - 250px);
+        height: 800px;
         background: url('./assets/get_started_background.jpeg');
         background-repeat: no-repeat;
         background-position: center;
@@ -93,7 +93,6 @@
 
       form {
         display: flex;
-        height: 60px;
       }
 
       form label {
@@ -102,13 +101,13 @@
 
       form .email {
         width: 70%;
-        height: 100%;
+        height: 40px;
         padding: 0 0.5rem;
         border: none;
       }
 
       form button {
-        height: 100%;
+        height: 40px;
         border: none;
         background: red;
         color: #fff;
@@ -119,9 +118,9 @@
 
       .feature {
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
-        height: 500px;
+        min-height: 500px;
         background: #000;
         color: #fff;
         border-bottom: solid 10px #222222;
@@ -142,11 +141,12 @@
       .media {
         position: relative;
         width: 500px;
+        min-height: 420px;
         height: 80%;
       }
 
       .media_img {
-        height: 80%;
+        max-width: 100%;
       }
 
       .tv_img {
@@ -160,6 +160,67 @@
       .media_video {
         position: absolute;
         z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .feature {
+          flex-direction: column;
+        }
+
+        .content {
+          text-align: center;
+          order: 0;
+          width: 80%;
+        }
+
+        .media {
+          order: 2;
+        }
+
+        .content h2 {
+          font-size: 2rem;
+        }
+
+        .content p {
+          font-size: 1.5rem;
+        }
+
+        form {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .form_button {
+          margin-top: 1rem;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .content {
+          width: 40%;
+        }
+
+        .media {
+          width: 40%;
+        }
+
+        .tv_img {
+          height: auto;
+        }
+
+        #tv_video {
+          height: auto !important;
+          left: calc(100vw * 0.4 * 80 / 640) !important;
+          top: calc(100vw * 0.4 * 480 / 640 * 97 / 480) !important;
+          width: calc(100vw * 0.4 * 480 / 640);
+        }
+
+        #devices_video {
+          height: auto !important;
+          left: calc(100vw * 0.4 * 120 / 640) !important;
+          top: calc(100vw * 0.4 * 480 / 640 * 52 / 480) !important;
+          width: calc(100vw * 0.4 * 390 / 640) !important;
+        }
       }
 
       #tv_video {
@@ -183,7 +244,7 @@
       }
 
       #asked_questions {
-        width: 820px;
+        max-width: 80%;
         margin: 0 auto;
       }
 
@@ -260,7 +321,7 @@
       }
 
       .others {
-        width: 800px;
+        min-width: 80%;
       }
 
       .items {
@@ -360,7 +421,9 @@
           <form>
             <label for="email">Input email:</label>
             <input placeholder="Email address" id="email" class="email" />
-            <button class="get_started_btn">Get Started ></button>
+            <div class="form_button">
+              <button class="get_started_btn">Get Started ></button>
+            </div>
           </form>
         </div>
       </section>
@@ -384,7 +447,9 @@
           </div>
         </div>
         <div class="feature">
-          <img src="./assets/mobile-0819.jpeg" class="media_img" />
+          <div class="media">
+            <img src="./assets/mobile-0819.jpeg" class="media_img" />
+          </div>
 
           <div class="content">
             <h2>Download your shows to watch offline.</h2>
@@ -412,7 +477,9 @@
           </div>
         </div>
         <div class="feature">
-          <img src="./assets/kids.png" class="media_img" />
+          <div class="media">
+            <img src="./assets/kids.png" class="media_img" />
+          </div>
 
           <div class="content">
             <h2>Create profiles for kids.</h2>
@@ -561,7 +628,9 @@
                 id="question_email"
                 class="email"
               />
-              <button class="get_started_btn">Get Started ></button>
+              <div class="form_button">
+                <button class="get_started_btn">Get Started ></button>
+              </div>
             </form>
           </div>
         </div>
