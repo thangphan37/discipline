@@ -67,8 +67,8 @@
       }
 
       #contents {
-        width: 700px;
-        margin: 10rem auto 0 auto;
+        max-width: 700px;
+        margin: 2rem auto;
         color: #fff;
       }
 
@@ -84,11 +84,6 @@
 
       .any_tilte {
         margin-top: 0.25rem;
-        font-size: 1.5rem;
-      }
-
-      .email_enter_title {
-        font-size: 1.25rem;
       }
 
       form {
@@ -111,7 +106,6 @@
         border: none;
         background: red;
         color: #fff;
-        font-size: 1.5rem;
         padding: 0 1.5rem;
         margin-left: 2px;
       }
@@ -131,28 +125,18 @@
       }
 
       .content h2 {
-        font-size: 3rem;
-      }
-
-      .content p {
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
 
       .media {
         position: relative;
         width: 500px;
         min-height: 420px;
-        height: 80%;
-      }
-
-      .media_img {
-        max-width: 100%;
       }
 
       .tv_img {
         position: absolute;
         top: 0;
-        height: 420px;
         z-index: 2;
       }
 
@@ -163,6 +147,30 @@
       }
 
       @media (max-width: 768px) {
+        #get_started {
+          height: auto !important;
+        }
+
+        nav {
+          padding: 1.5rem 1.5rem 0 1.5rem;
+        }
+
+        #netflix_logo {
+          width: 88px;
+        }
+
+        .language_options {
+          margin-right: 1rem;
+        }
+
+        #contents {
+          padding: 0 10%;
+        }
+
+        .unlimited_title {
+          font-size: 2rem;
+        }
+
         .feature {
           flex-direction: column;
         }
@@ -175,14 +183,16 @@
 
         .media {
           order: 2;
+          width: 80%;
+          min-height: calc(100vw * 0.8 * 480 / 640);
+        }
+
+        .media_img {
+          max-width: 100%;
         }
 
         .content h2 {
           font-size: 2rem;
-        }
-
-        .content p {
-          font-size: 1.5rem;
         }
 
         form {
@@ -192,6 +202,32 @@
 
         .form_button {
           margin-top: 1rem;
+        }
+
+        #asked_questions {
+          max-width: 80%;
+        }
+
+        #tv_video {
+          height: auto;
+          left: calc(100vw * 0.8 * 80 / 640);
+          top: calc(100vw * 0.8 * 480 / 640 * 97 / 480);
+          width: calc(100vw * 0.8 * 480 / 640);
+        }
+
+        #devices_video {
+          height: auto;
+          left: calc(100vw * 0.8 * 120 / 640);
+          top: calc(100vw * 0.8 * 480 / 640 * 52 / 480);
+          width: calc(100vw * 0.8 * 390 / 640);
+        }
+
+        .answer p {
+          padding: 2rem 0.5rem !important;
+        }
+
+        .others {
+          padding: 0 10%;
         }
       }
 
@@ -204,36 +240,54 @@
           width: 40%;
         }
 
+        .media_img {
+          max-width: 100%;
+        }
+
         .tv_img {
           height: auto;
         }
 
         #tv_video {
-          height: auto !important;
-          left: calc(100vw * 0.4 * 80 / 640) !important;
-          top: calc(100vw * 0.4 * 480 / 640 * 97 / 480) !important;
+          height: auto;
+          left: calc(100vw * 0.4 * 80 / 640);
+          top: calc(100vw * 0.4 * 480 / 640 * 97 / 480);
           width: calc(100vw * 0.4 * 480 / 640);
         }
 
         #devices_video {
-          height: auto !important;
-          left: calc(100vw * 0.4 * 120 / 640) !important;
-          top: calc(100vw * 0.4 * 480 / 640 * 52 / 480) !important;
-          width: calc(100vw * 0.4 * 390 / 640) !important;
+          height: auto;
+          left: calc(100vw * 0.4 * 120 / 640);
+          top: calc(100vw * 0.4 * 480 / 640 * 52 / 480);
+          width: calc(100vw * 0.4 * 390 / 640);
+        }
+
+        #asked_questions {
+          max-width: 80%;
         }
       }
 
-      #tv_video {
-        left: 71.75px;
-        top: 87.5px;
-        height: 236.25px;
-      }
+      @media (min-width: 1025px) {
+        .tv_img {
+          height: 420px;
+        }
 
-      #devices_video {
-        left: 89.25px;
-        top: 45.5px;
-        height: 192.5px;
-        width: 374.5px;
+        #tv_video {
+          left: 71.75px;
+          top: 87.5px;
+          height: 236.25px;
+        }
+
+        #devices_video {
+          left: 89.25px;
+          top: 45.5px;
+          height: 192.5px;
+          width: 374.5px;
+        }
+
+        #asked_questions {
+          max-width: 800px;
+        }
       }
 
       #questions {
@@ -244,12 +298,11 @@
       }
 
       #asked_questions {
-        max-width: 80%;
         margin: 0 auto;
       }
 
       #asked_questions h2 {
-        font-size: 3rem;
+        font-size: 2rem;
         text-align: center;
       }
 
@@ -259,7 +312,6 @@
 
       .question,
       .answer {
-        font-size: 1.75rem;
         background: #222222;
       }
 
@@ -337,7 +389,6 @@
       }
 
       .item_link {
-        font-size: 0.85rem;
         margin-top: 1rem;
         color: #5a5a5a;
         text-decoration: none;
