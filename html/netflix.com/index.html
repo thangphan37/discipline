@@ -146,6 +146,120 @@
         z-index: 1;
       }
 
+      #questions {
+        background: #000;
+        color: #fff;
+        display: flex;
+        border-bottom: solid 10px #222222;
+      }
+
+      #asked_questions {
+        margin: 0 auto;
+      }
+
+      #asked_questions h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .question_card {
+        margin-bottom: 0.5rem;
+      }
+
+      .question,
+      .answer {
+        background: #222222;
+      }
+
+      .question {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 60px;
+        padding: 0 2.5rem;
+      }
+
+      .question:hover {
+        cursor: pointer;
+      }
+
+      .answer {
+        margin-top: 2px;
+        line-height: 1.2;
+        text-align: justify;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .answer p {
+        margin: 0;
+        padding: 3rem 2.5rem;
+      }
+
+      .toggle_symbol {
+        position: absolute;
+        right: 1.875rem;
+        height: 2px;
+        width: 30px;
+        margin: 0;
+        background: #fff;
+      }
+
+      .toggle_symbol:first-child {
+        transform: rotate(90deg);
+      }
+
+      .question_form {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .question_form form {
+        justify-content: center;
+      }
+
+      #footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        color: #5a5a5a;
+        padding: 1.5rem 0;
+      }
+
+      .others {
+        min-width: 80%;
+      }
+
+      .items {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1em;
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .item_link {
+        margin-top: 1rem;
+        color: #5a5a5a;
+        text-decoration: none;
+      }
+
+      .item_link:hover {
+        text-decoration: underline;
+      }
+
+      .call {
+        margin: 0;
+      }
+
+      .company {
+        font-size: 1rem;
+      }
+
       @media (max-width: 768px) {
         #get_started {
           height: auto !important;
@@ -229,6 +343,12 @@
         .others {
           padding: 0 10%;
         }
+
+        .items {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5em;
+          font-size: 0.85em;
+        }
       }
 
       @media (min-width: 769px) and (max-width: 1024px) {
@@ -288,122 +408,6 @@
         #asked_questions {
           max-width: 800px;
         }
-      }
-
-      #questions {
-        background: #000;
-        color: #fff;
-        display: flex;
-        border-bottom: solid 10px #222222;
-      }
-
-      #asked_questions {
-        margin: 0 auto;
-      }
-
-      #asked_questions h2 {
-        font-size: 2rem;
-        text-align: center;
-      }
-
-      .question_card {
-        margin-bottom: 0.5rem;
-      }
-
-      .question,
-      .answer {
-        background: #222222;
-      }
-
-      .question {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        min-height: 60px;
-        padding: 0 2.5rem;
-      }
-
-      .question:hover {
-        cursor: pointer;
-      }
-
-      .answer {
-        margin-top: 2px;
-        line-height: 1.2;
-        text-align: justify;
-        max-height: 0;
-        overflow: hidden;
-      }
-
-      .answer p {
-        margin: 0;
-        padding: 3rem 2.5rem;
-      }
-
-      .toggle_symbol {
-        position: absolute;
-        right: 1.875rem;
-        height: 2px;
-        width: 30px;
-        margin: 0;
-        background: #fff;
-      }
-
-      .toggle_symbol:first-child {
-        transform: rotate(90deg);
-      }
-
-      .question_form {
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-
-      .question_form form {
-        justify-content: center;
-      }
-
-      #footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 400px;
-        background: #000;
-        color: #5a5a5a;
-      }
-
-      .others {
-        min-width: 80%;
-      }
-
-      .items {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .item {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .item_link {
-        margin-top: 1rem;
-        color: #5a5a5a;
-        text-decoration: none;
-      }
-
-      .item_link:hover {
-        text-decoration: underline;
-      }
-
-      .call {
-        margin: 0;
-      }
-
-      .company {
-        font-size: 1rem;
       }
 
       @keyframes expand {
@@ -692,39 +696,30 @@
             Questions? Call
             <a href="0120-996-012" class="item_link">0120-996-012</a>
           </p>
-          <div class="items">
-            <div class="item">
-              <a href="#" class="item_link">FAQ</a>
-              <a href="#" class="item_link">Investor Relations</a>
-              <a href="#" class="item_link">Ways to Watch</a>
-              <a href="#" class="item_link">Corporate Information</a>
-              <a href="#" class="item_link">Legal Notices</a>
-            </div>
-
-            <div class="item">
-              <a href="#" class="item_link">Help Center</a>
-              <a href="#" class="item_link">Jobs</a>
-              <a href="#" class="item_link">Terms of Use</a>
-              <a href="#" class="item_link">Contact Us</a>
-              <a href="#" class="item_link">Netflix Originals</a>
-            </div>
-
-            <div class="item">
-              <a href="#" class="item_link">Account</a>
-              <a href="#" class="item_link">Redeem Gift Cards</a>
-              <a href="#" class="item_link">Privacy</a>
+          <ul class="items">
+            <li><a href="#" class="item_link">FAQ</a></li>
+            <li><a href="#" class="item_link">Help Center</a></li>
+            <li><a href="#" class="item_link">Account</a></li>
+            <li><a href="#" class="item_link">Media Center</a></li>
+            <li><a href="#" class="item_link">Investor Relations</a></li>
+            <li><a href="#" class="item_link">Jobs</a></li>
+            <li><a href="#" class="item_link">Redeem Gift Cards</a></li>
+            <li><a href="#" class="item_link">Buy Gift Cards</a></li>
+            <li><a href="#" class="item_link">Ways to Watch</a></li>
+            <li><a href="#" class="item_link">Terms of Use</a></li>
+            <li><a href="#" class="item_link">Privacy</a></li>
+            <li><a href="#" class="item_link">Cookie Preferences</a></li>
+            <li><a href="#" class="item_link">Corporate Information</a></li>
+            <li><a href="#" class="item_link">Contact Us</a></li>
+            <li>
               <a href="#" class="item_link"
                 >Act on Specified Commercial Transactions</a
               >
-            </div>
-
-            <div class="item">
-              <a href="#" class="item_link">Media Center</a>
-              <a href="#" class="item_link">Buy Gift Cards</a>
-              <a href="#" class="item_link">Cookie Preferences</a>
-              <a href="#" class="item_link">Speed Test</a>
-            </div>
-          </div>
+            </li>
+            <li><a href="#" class="item_link">Speed Test</a></li>
+            <li><a href="#" class="item_link">Legal Notices</a></li>
+            <li><a href="#" class="item_link">Netflix Originals</a></li>
+          </ul>
           <div class="language_options">
             <label for="footer_language">Select language:</label>
             <select id="footer_language" class="language">
